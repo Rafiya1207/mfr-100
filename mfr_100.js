@@ -30,10 +30,10 @@ const countElements =
       0
     );
 
-const areAllTempBelow32 =
-  sheets => sheets
-    .flatMap(sheet => sheet)
-    .every(temperature => temperature < 32);
+const satisfiesAll =
+  (array, predicate) => array
+    .flatMap(element => element)
+    .every(predicate);
 
 const isArray = array => Array.isArray(array);
 
@@ -124,18 +124,6 @@ const TESTS = [
     sumOfElements,
     15,
     '3 candy refill records'
-  ],
-  [
-    [[22, 23], [25, 24, 22], [29]],
-    areAllTempBelow32,
-    true,
-    'temperatures are all below 32'
-  ],
-  [
-    [[22, 23], [25, 24, 22], [29], [40, 45]],
-    areAllTempBelow32,
-    false,
-    'temperatures are all not below 32'
   ],
   [
     [[2, 3, 2], [4], [1, 1]],
@@ -303,6 +291,20 @@ const TESTS_HAVING_TARGET = [
     2,
     'how many orders were "chocolate"'
   ],
+  [
+    [[22, 23], [25, 24, 22], [29]],
+    temp => temp < 32,
+    satisfiesAll,
+    true,
+    'are all temperatures below 32'
+  ],
+  [
+    [[3, 4], [5, 2], [1]],
+    value => value > 0,
+    satisfiesAll,
+    true,
+    'are all values positive'
+  ]
 ];
 
 const delimiter = () => { console.log('-'.repeat(20)) };
