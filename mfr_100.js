@@ -22,25 +22,17 @@ const containsAtLeastOne =
     .flatMap(element => element)
     .some(element => element === target);
 
-const blueRibbonsCount = ribbons => ribbons.reduce(
-  (prevCount, ribbon) => ribbon === 'blue' ? prevCount + 1 : prevCount,
-  0
-);
+const countElements =
+  (array, target) => array.reduce(
+    (prevCount, ribbon) =>
+      ribbon === target ? prevCount + 1 : prevCount,
+    0
+  );
 
 const areAllTempBelow32 =
   sheets => sheets
     .flatMap(sheet => sheet)
     .every(temperature => temperature < 32);
-
-const countDune = books => books.reduce(
-  (prevCount, book) => book === 'Dune' ? prevCount + 1 : prevCount,
-  0
-);
-
-const countDeers = animals => animals.reduce(
-  (prevCount, animal) => animal === 'deer' ? prevCount + 1 : prevCount,
-  0
-);
 
 const isArray = array => Array.isArray(array);
 
@@ -106,18 +98,6 @@ const testContainsAtLeastOnce = (testCase) => {
 
 const TESTS = [
   [
-    ["red", "blue", "red", "green", "red", "blue"],
-    blueRibbonsCount,
-    2,
-    '2 blue ribbons are cut'
-  ],
-  [
-    ["red", "red", "green", "red"],
-    blueRibbonsCount,
-    0,
-    '0 blue ribbons are cut'
-  ],
-  [
     [["Orion", "Leo"], ["Taurus"], ["Orion", "Gemini"]],
     uniqueElements,
     ["Orion", "Leo", "Taurus", "Gemini"],
@@ -169,12 +149,6 @@ const TESTS = [
     '3 color sessions'
   ],
   [
-    ["Dune", "Dune", "Foundation", "Dune"],
-    countDune,
-    3,
-    'Dune repeated more than 1'
-  ],
-  [
     [["rice", "lentils"], ["rice"], ["curd", "lentils"]],
     uniqueElements,
     ["rice", "lentils", "curd"],
@@ -192,12 +166,7 @@ const TESTS = [
     ["small", "large", "medium"],
     '3 sizes'
   ],
-  [
-    ["deer", "deer", "rabbit", "deer"],
-    countDeers,
-    3,
-    '3 Deers'
-  ],
+
   [
     [[1, 2], [3], [2, 4, 1]],
     uniqueElements,
@@ -278,13 +247,13 @@ const TESTS = [
   ],
   [
     [["sunset", "bird"], ["river"], ["sunset"]],
-    uniqueElements, 
+    uniqueElements,
     ["sunset", "bird", "river"],
     'List unique themes'
   ]
 ];
 
-const TESTS_CONTAINS_ATLEAST_ONE = [
+const TESTS_HAVING_TARGET = [
   [
     [["mi", "fa", "so"], ["do", "mi"], ["fa"]],
     'do',
@@ -306,6 +275,27 @@ const TESTS_CONTAINS_ATLEAST_ONE = [
     true,
     '2 sequences'
   ],
+  [
+    ["red", "blue", "red", "green", "red", "blue"],
+    'blue',
+    countElements,
+    2,
+    'how many blue ribbons were cut'
+  ],
+  [
+    ["Dune", "Dune", "Foundation", "Dune"],
+    'Dune',
+    countElements,
+    3,
+    'Count how many times “Dune” was returned'
+  ],
+  [
+    ["deer", "deer", "rabbit", "deer"],
+    'deer',
+    countElements,
+    3,
+    'Count how many times “deer” was seen'
+  ],
 ];
 
 const delimiter = () => { console.log('-'.repeat(20)) };
@@ -313,7 +303,7 @@ const delimiter = () => { console.log('-'.repeat(20)) };
 const testAll = () => {
   TESTS.forEach(test);
   delimiter();
-  TESTS_CONTAINS_ATLEAST_ONE.forEach(testContainsAtLeastOnce);
+  TESTS_HAVING_TARGET.forEach(testContainsAtLeastOnce);
 }
 
 testAll();
