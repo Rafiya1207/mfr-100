@@ -79,6 +79,8 @@ const sumWeights = (crateWeights) => crateWeights.reduce(
   0
 );
 
+const uniqueParcelSizes = (sizes) => sizes.reduce(addUnique, []);
+
 const isArray = array => Array.isArray(array);
 
 const areArraysEqual = function (array1, array2) {
@@ -213,7 +215,13 @@ const TESTS = [
     sumWeights,
     21,
     '3 crates'
-  ]
+  ],
+  [
+    ["small", "large", "medium", "small"],
+    uniqueParcelSizes,
+    ["small", "large", "medium"],
+    '3 sizes'
+  ],
 ]
 
 const testAll = function () {
