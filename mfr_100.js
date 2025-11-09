@@ -23,11 +23,12 @@ const containsAtLeastOne =
     .some(element => element === target);
 
 const countElements =
-  (array, target) => array.reduce(
-    (prevCount, ribbon) =>
-      ribbon === target ? prevCount + 1 : prevCount,
-    0
-  );
+  (array, target) => array
+    .flatMap(element => element)
+    .reduce((prevCount, element) =>
+      element === target ? prevCount + 1 : prevCount,
+      0
+    );
 
 const areAllTempBelow32 =
   sheets => sheets
@@ -166,7 +167,6 @@ const TESTS = [
     ["small", "large", "medium"],
     '3 sizes'
   ],
-
   [
     [[1, 2], [3], [2, 4, 1]],
     uniqueElements,
@@ -295,6 +295,13 @@ const TESTS_HAVING_TARGET = [
     countElements,
     3,
     'Count how many times “deer” was seen'
+  ],
+  [
+    [["vanilla", "chocolate"], ["strawberry"], ["chocolate"]],
+    'chocolate',
+    countElements,
+    2,
+    'how many orders were "chocolate"'
   ],
 ];
 
