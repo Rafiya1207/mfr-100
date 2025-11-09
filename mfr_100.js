@@ -274,6 +274,36 @@ const TESTS = [
     15,
     'Total Gym Routine Count'
   ],
+  [
+    [[1, 2, 3], [2]],
+    sumOfElements,
+    8,
+    'Sum all candies'
+  ],
+  [
+    [["Tom", "Jerry"], ["Jerry", "Spike"]],
+    uniqueElements,
+    ["Tom", "Jerry", "Spike"],
+    'List unique workshop participants'
+  ],
+  [
+    [["Vega", "Sirius"], ["Vega", "Rigel"]],
+    uniqueElements,
+    ["Vega", "Sirius", "Rigel"],
+    'List unique star names'
+  ],
+  [
+    [[10, 12], [15]],
+    sumOfElements,
+    37,
+    'Total Train Car passengers'
+  ],
+  [
+    [[3, 5], [2, 1]],
+    sumOfElements,
+    11,
+    'Weekly Grocery Tally'
+  ]
 ];
 
 const TESTS_HAVING_TARGET = [
@@ -360,8 +390,7 @@ const TESTS_HAVING_TARGET = [
     satisfiesAtleastOne,
     false,
     'Check if any measurement is above 7'
-  ]
-
+  ],
 ];
 
 const delimiter = () => { console.log('-'.repeat(20)) };
