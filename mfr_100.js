@@ -20,7 +20,7 @@ const sumOfElements =
 const containsAtLeastOne =
   (array, target) => array
     .flatMap(element => element)
-    .some(element => element === target);
+    .includes(target);
 
 const countElements =
   (array, target) => array
@@ -29,6 +29,11 @@ const countElements =
       element === target ? prevCount + 1 : prevCount,
       0
     );
+
+const satisfiesAtleastOne =
+  (array, predicate) => array
+    .flatMap(element => element)
+    .some(predicate);
 
 const satisfiesAll =
   (array, predicate) => array
@@ -238,7 +243,37 @@ const TESTS = [
     uniqueElements,
     ["sunset", "bird", "river"],
     'List unique themes'
-  ]
+  ],
+  [
+    [[2, 3, 2], [1], [4]],
+    sumOfElements,
+    12,
+    'Compute total Jogging laps'
+  ],
+  [
+    [["cheese", "bread"], ["tomato"], ["bread"]],
+    uniqueElements,
+    ["cheese", "bread", "tomato"],
+    'Unique cafe ingredients needed'
+  ],
+  [
+    [["sky", "blue"], ["night"], ["sky", "dark"]],
+    uniqueElements,
+    ["sky", "blue", "night", "dark"],
+    'List all unique Student Poetry Words'
+  ],
+  [
+    [["toy", "sticker"], ["candy", "sticker"]],
+    uniqueElements,
+    ["toy", "sticker", "candy"],
+    'List unique gift box items used'
+  ],
+  [
+    [[6, 4], [3, 2]],
+    sumOfElements,
+    15,
+    'Total Gym Routine Count'
+  ],
 ];
 
 const TESTS_HAVING_TARGET = [
@@ -304,7 +339,29 @@ const TESTS_HAVING_TARGET = [
     satisfiesAll,
     true,
     'are all values positive'
+  ],
+  [
+    [[110, 115], [118], [109]],
+    reading => reading < 120,
+    satisfiesAll,
+    true,
+    'Check if all readings are below 120'
+  ],
+  [
+    ["track1", "track2", "track1"],
+    'track1',
+    countElements,
+    2,
+    'Count occurrences of "track1"'
+  ],
+  [
+    [[5, 6], [7], [6]],
+    measurement => measurement > 7,
+    satisfiesAtleastOne,
+    false,
+    'Check if any measurement is above 7'
   ]
+
 ];
 
 const delimiter = () => { console.log('-'.repeat(20)) };
