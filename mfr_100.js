@@ -48,9 +48,7 @@ const areAllTempBelow32 = (sheets) => sheets.every(
 );
 
 const totalMiles = (logs) => logs.reduce(
-  (prevSum, log) => log.reduce(
-    (sum, miles) => sum + miles, prevSum
-  ),
+  (total, log) => log.reduce(sum, total),
   0
 );
 
