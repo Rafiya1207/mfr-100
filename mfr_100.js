@@ -7,89 +7,89 @@ const addUnique = (array, element) => {
 
 const sum = (a, b) => a + b;
 
-const blueRibbonsCut = (ribbons) => ribbons.reduce(
+const blueRibbonsCut = ribbons => ribbons.reduce(
   (prevCount, ribbon) => ribbon === 'blue' ? prevCount + 1 : prevCount,
   0
 );
 
-const allConstellations = (observations) =>
+const allConstellations = observations =>
   observations.reduce((constillations, observation) =>
     observation.reduce(addUnique, constillations),
     []
   );
 
-const uniqueBirds = (birds) => birds.reduce(addUnique, []);
+const uniqueBirds = birds => birds.reduce(addUnique, []);
 
-const studentsAttendedAtLeastOnce = (records) =>
+const studentsAttendedAtLeastOnce = records =>
   records.reduce((resultValue, record) =>
     record.reduce(addUnique, resultValue),
     []
   );
 
-const countCandies = (logs) =>
+const countCandies = logs =>
   logs.reduce((total, log) =>
     log.reduce(sum, total),
     0
   );
 
-const didSangDo = (fragment) => fragment.some(
+const didSangDo = fragment => fragment.some(
   (notes) => notes.some(
     (note) => note === 'do'
   )
 );
 
-const areAllTempBelow32 = (sheets) => sheets.every(
+const areAllTempBelow32 = sheets => sheets.every(
   (sheet) => sheet.every(
     (temperature) => temperature < 32
   )
 );
 
-const totalMiles = (logs) => logs.reduce(
+const totalMiles = logs => logs.reduce(
   (total, log) => log.reduce(sum, total),
   0
 );
 
-const uniqueColors = (colorList) => colorList.reduce(
+const uniqueColors = colorList => colorList.reduce(
   (reducedColors, colors) => colors.reduce(addUnique, reducedColors),
   []
 );
 
-const countDune = (books) => books.reduce(
+const countDune = books => books.reduce(
   (prevCount, book) => book === 'Dune' ? prevCount + 1 : prevCount,
   0
 );
 
-const distinctIngredients = (ingredients) =>
-  ingredients.reduce((reducedIngredients, currIngredients) =>
-    currIngredients.reduce(addUnique, reducedIngredients), []
+const distinctIngredients = ingredients => ingredients
+  .reduce((reducedIngredients, currIngredients) => currIngredients
+    .reduce(addUnique, reducedIngredients), []
   );
 
-const didSangSo = (fragment) => fragment.some(
+const didSangSo = fragment => fragment.some(
   (notes) => notes.some(
     (note) => note === 'so'
   )
 );
 
-const sumWeights = (crateWeights) => crateWeights.reduce(
+const sumWeights = crateWeights => crateWeights.reduce(
   (total, weights) => weights.reduce(sum, total),
   0
 );
 
-const uniqueParcelSizes = (sizes) => sizes.reduce(addUnique, []);
+const uniqueParcelSizes = sizes => sizes.reduce(addUnique, []);
 
-const countDeers = (animals) => animals.reduce(
+const countDeers = animals => animals.reduce(
   (prevCount, animal) => animal === 'deer' ? prevCount + 1 : prevCount,
   0
 );
 
-const uniqueChapters = (groupsChapters) => groupsChapters.reduce(
+const uniqueChapters = groupsChapters => groupsChapters.reduce(
   (reducedChapters, chapters) => chapters.reduce(addUnique, reducedChapters),
   []
 );
 
 const isArray = array => Array.isArray(array);
 
-const areArraysEqual = function (array1, array2) {
+const areArraysEqual = (array1, array2) => {
   if (array1.length !== array2.length) {
     return false;
   }
@@ -102,7 +102,7 @@ const areArraysEqual = function (array1, array2) {
   return true;
 }
 
-const areDeepEqual = function (array1, array2) {
+const areDeepEqual = (array1, array2) => {
   if (typeof array1 !== typeof array2) {
     return false;
   }
@@ -113,13 +113,13 @@ const areDeepEqual = function (array1, array2) {
   return array1 === array2;
 }
 
-const details = function (integers, expected, actual) {
+const details = (integers, expected, actual) => {
   const inputMessage = `input : [${integers}]\n`;
   const resultMessage = `expected: ${expected}\nactual: ${actual}`;
   return `${inputMessage}${resultMessage}`;
 }
 
-const composeMessage = function (integers, expected, actual, description) {
+const composeMessage = (integers, expected, actual, description) => {
   const isPass = areDeepEqual(expected, actual);
   const symbol = isPass ? '✅' : '❌';
   const message = symbol + description + '\n';
@@ -128,7 +128,7 @@ const composeMessage = function (integers, expected, actual, description) {
   return message + testDetails;
 }
 
-const test = function (testCase) {
+const test = (testCase) => {
   const array = testCase[0];
   const expression = testCase[1];
   const expected = testCase[2];
@@ -242,7 +242,7 @@ const TESTS = [
   ],
 ]
 
-const testAll = function () {
+const testAll = () => {
   TESTS.forEach(test);
 }
 
