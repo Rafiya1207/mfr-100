@@ -303,6 +303,30 @@ const TESTS = [
     sumOfElements,
     11,
     'Weekly Grocery Tally'
+  ],
+  [
+    [["mint", "ginger"], ["lemon"], ["mint"]],
+    uniqueElements,
+    ["mint", "ginger", "lemon"],
+    'Unique Tea Tasting Flavors'
+  ],
+  [
+    [["pencil", "charcoal"], ["ink"], ["pencil"]],
+    uniqueElements,
+    ["pencil", "charcoal", "ink"],
+    'Unique Drawing Class Tools'
+  ],
+  [
+    [[1, 1, 2], [2, 1]],
+    sumOfElements,
+    7,
+    'Toatal Coin Collection Tally'
+  ],
+  [
+    [["salt", "pepper"], ["turmeric"], ["salt"]],
+    uniqueElements,
+    ["salt", "pepper", "turmeric"],
+    'Unique Cooking Class Spices'
   ]
 ];
 
@@ -390,6 +414,13 @@ const TESTS_HAVING_TARGET = [
     satisfiesAtleastOne,
     false,
     'Check if any measurement is above 7'
+  ],
+  [
+    [[2, 3], [1], [4, 2]],
+    4,
+    containsAtLeastOne,
+    true,
+    'Photography Exposure Values'
   ],
 ];
 
