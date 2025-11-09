@@ -22,16 +22,15 @@ const containsAtLeastOne =
     .flatMap(element => element)
     .some(element => element === target);
 
-const blueRibbonsCut = ribbons => ribbons.reduce(
+const blueRibbonsCount = ribbons => ribbons.reduce(
   (prevCount, ribbon) => ribbon === 'blue' ? prevCount + 1 : prevCount,
   0
 );
 
-const areAllTempBelow32 = sheets => sheets.every(
-  (sheet) => sheet.every(
-    (temperature) => temperature < 32
-  )
-);
+const areAllTempBelow32 = 
+  sheets => sheets
+  .flatMap(sheet => sheet)
+  .every(temperature => temperature < 32);
 
 const countDune = books => books.reduce(
   (prevCount, book) => book === 'Dune' ? prevCount + 1 : prevCount,
@@ -106,8 +105,18 @@ const testContainsAtLeastOnce = (testCase) => {
 }
 
 const TESTS = [
-  [["red", "blue", "red", "green", "red", "blue"], blueRibbonsCut, 2, '2 blue ribbons are cut'],
-  [["red", "red", "green", "red"], blueRibbonsCut, 0, '0 blue ribbons are cut'],
+  [
+    ["red", "blue", "red", "green", "red", "blue"], 
+    blueRibbonsCount, 
+    2, 
+    '2 blue ribbons are cut'
+  ],
+  [
+    ["red", "red", "green", "red"], 
+    blueRibbonsCount, 
+    0, 
+    '0 blue ribbons are cut'
+  ],
   [
     [["Orion", "Leo"], ["Taurus"], ["Orion", "Gemini"]],
     uniqueElements,
