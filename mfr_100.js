@@ -28,10 +28,7 @@ const studentsAttendedAtLeastOnce = (records) =>
 
 const countCandies = (logs) =>
   logs.reduce((total, log) =>
-    log.reduce((prevCount, currCount) =>
-      prevCount + currCount,
-      total
-    ),
+    log.reduce(sum, total),
     0
   );
 
@@ -53,7 +50,7 @@ const totalMiles = (logs) => logs.reduce(
 );
 
 const uniqueColors = (colorList) => colorList.reduce(
-  (uniqueColors, colors) => colors.reduce(addUnique, uniqueColors),
+  (reducedColors, colors) => colors.reduce(addUnique, reducedColors),
   []
 );
 
@@ -63,10 +60,9 @@ const countDune = (books) => books.reduce(
 );
 
 const distinctIngredients = (ingredients) =>
-  ingredients
-    .reduce((distinctIngredients, currIngredients) =>
-      currIngredients.reduce(addUnique, distinctIngredients), []
-    );
+  ingredients.reduce((reducedIngredients, currIngredients) =>
+    currIngredients.reduce(addUnique, reducedIngredients), []
+  );
 
 const didSangSo = (fragment) => fragment.some(
   (notes) => notes.some(
@@ -84,7 +80,12 @@ const uniqueParcelSizes = (sizes) => sizes.reduce(addUnique, []);
 const countDeers = (animals) => animals.reduce(
   (prevCount, animal) => animal === 'deer' ? prevCount + 1 : prevCount,
   0
-)
+);
+
+const uniqueChapters = (groupsChapters) => groupsChapters.reduce(
+  (reducedChapters, chapters) => chapters.reduce(addUnique, reducedChapters),
+  []
+);
 
 const isArray = array => Array.isArray(array);
 
@@ -232,6 +233,12 @@ const TESTS = [
     countDeers,
     3,
     '3 Deers'
+  ],
+  [
+    [[1, 2], [3], [2, 4, 1]],
+    uniqueChapters,
+    [1, 2, 3, 4],
+    "3 groups' chapters"
   ],
 ]
 
