@@ -40,6 +40,11 @@ const satisfiesAll =
     .flatMap(element => element)
     .every(predicate);
 
+const concatElements =
+  elements => elements
+    .flatMap(element => element)
+    .reduce(sum, '');
+
 const isArray = array => Array.isArray(array);
 
 const areArraysEqual = (array1, array2) => {
@@ -327,7 +332,51 @@ const TESTS = [
     uniqueElements,
     ["salt", "pepper", "turmeric"],
     'Unique Cooking Class Spices'
-  ]
+  ],
+  [
+    [["apple", "dog"], ["banana", "elephant"], ["papaya", "frog"]],
+    concatElements,
+    'appledogbananaelephantpapayafrog',
+    'Combine all words written by students on three worksheets'
+  ],
+  [
+    [['comedy', 'sci-fi'], ['history', 'fantasy'], ['comedy', 'fantasy']],
+    uniqueElements,
+    ['comedy', 'sci-fi', 'history', 'fantasy'],
+    'Produce a list of unique movie genres mentioned by a club'
+  ],
+  [
+    [[2, 3], [5, 1], [9, 5]],
+    sumOfElements,
+    25,
+    'Compute the total number of pushups done in all sessions'
+  ],
+  [
+    [["Parrot"], ["Crow", "Crow"], ["Hawk", "Eagle"]],
+    uniqueElements,
+    ["Parrot", "Crow", "Hawk", "Eagle"],
+    'list of all unique bird species'
+  ],
+  [
+    [[5, 10], [5, 3, 2], [15]],
+    sumOfElements,
+    40,
+    'Sum all distances covered during cycling practice'
+  ],
+  [
+    ['vanilla', 'chocolate', 'strawberry', 'chocolate', 'vanilla'],
+    uniqueElements,
+    ['vanilla', 'chocolate', 'strawberry'],
+    'List unique flavors tried in an ice-cream tasting event'
+  ],
+  [
+    [['milk', 'water', 'tea'], ['milk', 'tea'], ['milk', 'tea', 'sugar']],
+    uniqueElements,
+    ['milk', 'water', 'tea', 'sugar'],
+    'Combine the ingredients from all recipe attempts'
+  ],
+
+
 ];
 
 const TESTS_HAVING_TARGET = [
@@ -422,6 +471,50 @@ const TESTS_HAVING_TARGET = [
     true,
     'Photography Exposure Values'
   ],
+  [
+    [['apple', 'banana'], ['banana'], ['banana', 'grapes']],
+    'banana',
+    countElements,
+    3,
+    'Count how many times “banana” appears'
+  ],
+  [
+    [['good', 'excellent'], ['bad'], ['excellent']],
+    'excellent',
+    containsAtLeastOne,
+    true,
+    'Determine whether any student wrote the word “excellent”'
+  ],
+  [
+    [[20, 34], [11, 45], [19], [49, 35]],
+    value => value < 50,
+    satisfiesAll,
+    true,
+    'Check whether all recorded rainfall values are under 50'
+  ],
+  [
+    [["red", "orange"], ["orange", "red"], ["red", "red"]],
+    'red',
+    countElements,
+    4,
+    'Count how many tiles in a mosaic were listed as “red”'
+  ],
+  [
+    [[80, 100], [0, 99], [12, 50]],
+    score => score > 90,
+    satisfiesAtleastOne,
+    true,
+    'Check if any participant scored above 90 in tests'
+  ],
+  [
+    [20, 18, 21, 23, 24, 30],
+    age => age >= 18,
+    satisfiesAll,
+    true,
+    'Verify if all ages listed for an event are 18 or above'
+  ],
+  
+
 ];
 
 const delimiter = () => { console.log('-'.repeat(20)) };
