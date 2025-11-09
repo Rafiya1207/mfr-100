@@ -12,16 +12,15 @@ const uniqueElements =
     .flatMap(element => element)
     .reduce(addUnique, []);
 
+const sumOfElements = 
+  elements => elements
+    .flatMap(element => element)
+    .reduce(sum, 0);
+
 const blueRibbonsCut = ribbons => ribbons.reduce(
   (prevCount, ribbon) => ribbon === 'blue' ? prevCount + 1 : prevCount,
   0
 );
-
-const countCandies = logs =>
-  logs.reduce((total, log) =>
-    log.reduce(sum, total),
-    0
-  );
 
 const didSangDo = fragment => fragment.some(
   (notes) => notes.some(
@@ -35,11 +34,6 @@ const areAllTempBelow32 = sheets => sheets.every(
   )
 );
 
-const totalMiles = logs => logs.reduce(
-  (total, log) => log.reduce(sum, total),
-  0
-);
-
 const countDune = books => books.reduce(
   (prevCount, book) => book === 'Dune' ? prevCount + 1 : prevCount,
   0
@@ -51,11 +45,6 @@ const didSangSo = fragment => fragment.some(
   )
 );
 
-const sumWeights = crateWeights => crateWeights.reduce(
-  (total, weights) => weights.reduce(sum, total),
-  0
-);
-
 const countDeers = animals => animals.reduce(
   (prevCount, animal) => animal === 'deer' ? prevCount + 1 : prevCount,
   0
@@ -64,10 +53,6 @@ const countDeers = animals => animals.reduce(
 const containsTurn = sequences => sequences
   .flatMap(sequence => sequence)
   .some(step => step === 'turn')
-
-const totalAmountOfWater = logs => logs
-  .flatMap(log => log)
-  .reduce(sum, 0)
 
 const isArray = array => Array.isArray(array);
 
@@ -146,7 +131,7 @@ const TESTS = [
   ],
   [
     [[5, 3], [2], [4, 1]],
-    countCandies,
+    sumOfElements,
     15,
     '3 candy refill records'
   ],
@@ -170,7 +155,7 @@ const TESTS = [
   ],
   [
     [[2, 3, 2], [4], [1, 1]],
-    totalMiles,
+    sumOfElements,
     13,
     '3 logs'
   ],
@@ -200,7 +185,7 @@ const TESTS = [
   ],
   [
     [[4, 6], [2, 3, 1], [5]],
-    sumWeights,
+    sumOfElements,
     21,
     '3 crates'
   ],
@@ -230,7 +215,7 @@ const TESTS = [
   ],
   [
     [[1, 2, 1], [3], [2]],
-    totalAmountOfWater,
+    sumOfElements,
     9,
     '3 usage logs'
   ]
