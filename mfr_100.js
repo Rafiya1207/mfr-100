@@ -12,12 +12,12 @@ const uniqueElements =
     .flatMap(element => element)
     .reduce(addUnique, []);
 
-const sumOfElements = 
+const sumOfElements =
   elements => elements
     .flatMap(element => element)
     .reduce(sum, 0);
 
-const containsAtLeastOne = 
+const containsAtLeastOne =
   (array, target) => array
     .flatMap(element => element)
     .some(element => element === target);
@@ -27,10 +27,10 @@ const blueRibbonsCount = ribbons => ribbons.reduce(
   0
 );
 
-const areAllTempBelow32 = 
+const areAllTempBelow32 =
   sheets => sheets
-  .flatMap(sheet => sheet)
-  .every(temperature => temperature < 32);
+    .flatMap(sheet => sheet)
+    .every(temperature => temperature < 32);
 
 const countDune = books => books.reduce(
   (prevCount, book) => book === 'Dune' ? prevCount + 1 : prevCount,
@@ -99,22 +99,22 @@ const testContainsAtLeastOnce = (testCase) => {
   const expression = testCase[2];
   const expected = testCase[3];
   const description = testCase[4];
-  
+
   const actual = expression(array, target);
   return console.log(composeMessage(array, expected, actual, description));
 }
 
 const TESTS = [
   [
-    ["red", "blue", "red", "green", "red", "blue"], 
-    blueRibbonsCount, 
-    2, 
+    ["red", "blue", "red", "green", "red", "blue"],
+    blueRibbonsCount,
+    2,
     '2 blue ribbons are cut'
   ],
   [
-    ["red", "red", "green", "red"], 
-    blueRibbonsCount, 
-    0, 
+    ["red", "red", "green", "red"],
+    blueRibbonsCount,
+    0,
     '0 blue ribbons are cut'
   ],
   [
@@ -209,11 +209,83 @@ const TESTS = [
     sumOfElements,
     9,
     '3 water usage logs'
+  ],
+  [
+    [[3, 2], [1], [4]],
+    sumOfElements,
+    10,
+    'total origami cranes'
+  ],
+  [
+    [["apple", "banana"], ["apple"], ["apple", "orange"]],
+    uniqueElements,
+    ["apple", "banana", "orange"],
+    'List unique fruits used'
+  ],
+  [
+    [[2, 3], [1], [3, 2]],
+    sumOfElements,
+    11,
+    'Total pens handed out'
+  ],
+  [
+    [["Inception", "Dunkirk"], ["Interstellar"], ["Inception"]],
+    uniqueElements,
+    ["Inception", "Dunkirk", "Interstellar"],
+    'List unique titles watched'
+  ],
+  [
+    ["A", "B", "A", "C", "B"],
+    uniqueElements,
+    ['A', 'B', 'C'],
+    'Create a unique list of attendees'
+  ],
+  [
+    [["rose", "lily"], ["lily", "tulip"]],
+    uniqueElements,
+    ["rose", "lily", "tulip"],
+    'all unique flowers used'
+  ],
+  [
+    [[10, 20], [5], [15, 10]],
+    sumOfElements,
+    60,
+    'Total repetitions done'
+  ],
+  [
+    ["A", "B", "A", "C", "B"],
+    uniqueElements,
+    ['A', 'B', 'C'],
+    'station names without repeats'
+  ],
+  [
+    [[12, 10], [5], [8, 7]],
+    sumOfElements,
+    42,
+    'total pages read'
+  ],
+  [
+    [[4, 3], [2], [3, 1]],
+    sumOfElements,
+    13,
+    'total fruit Stand Weight'
+  ],
+  [
+    [["idli", "vada"], ["vada", "upma"]],
+    uniqueElements,
+    ["idli", "vada", "upma"],
+    'Unique snacks served'
+  ],
+  [
+    [["sunset", "bird"], ["river"], ["sunset"]],
+    uniqueElements, 
+    ["sunset", "bird", "river"],
+    'List unique themes'
   ]
 ];
 
 const TESTS_CONTAINS_ATLEAST_ONE = [
-[
+  [
     [["mi", "fa", "so"], ["do", "mi"], ["fa"]],
     'do',
     containsAtLeastOne,
