@@ -63,6 +63,12 @@ const distinctIngredients = (ingredients) =>
       currIngredients.reduce(addUnique, distinctIngredients), []
     );
 
+const didSangSo = (fragment) => fragment.some(
+  (notes) => notes.some(
+    (note) => note === 'so'
+  )
+);
+
 const isArray = array => Array.isArray(array);
 
 const areArraysEqual = function (array1, array2) {
@@ -179,7 +185,13 @@ const TESTS = [
     distinctIngredients,
     ["rice", "lentils", "curd"],
     '3 lists of ingredients'
-  ]
+  ],
+  [
+    [["mi", "fa", "so"], ["do", "mi"], ["fa"]],
+    didSangSo,
+    true,
+    'notes has "so"'
+  ],
 ]
 
 const testAll = function () {
