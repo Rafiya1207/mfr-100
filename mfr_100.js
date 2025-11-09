@@ -87,6 +87,10 @@ const uniqueChapters = groupsChapters => groupsChapters.reduce(
   []
 );
 
+const containsTurn = sequences => sequences
+  .flatMap(sequence => sequence)
+  .some(step => step === 'turn')
+
 const isArray = array => Array.isArray(array);
 
 const areArraysEqual = (array1, array2) => {
@@ -239,6 +243,12 @@ const TESTS = [
     uniqueChapters,
     [1, 2, 3, 4],
     "3 groups' chapters"
+  ],
+  [
+    [["step", "tap"], ["turn", "step"]],
+    containsTurn,
+    true,
+    '2 sequences'
   ],
 ]
 
