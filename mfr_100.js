@@ -52,6 +52,11 @@ const totalMiles = (logs) => logs.reduce(
   0
 );
 
+const uniqueColors = (colorList) => colorList.reduce(
+  (uniqueColors, colors) => colors.reduce(addUnique, uniqueColors),
+  []
+);
+
 const countDune = (books) => books.reduce(
   (prevCount, book) => book === 'Dune' ? prevCount + 1 : prevCount,
   0
@@ -173,6 +178,12 @@ const TESTS = [
     totalMiles,
     13,
     '3 logs'
+  ],
+  [
+    [["blue", "yellow"], ["yellow", "green"], ["blue"]],
+    uniqueColors,
+    ["blue", "yellow", "green"],
+    '3 color sessions'
   ],
   [
     ["Dune", "Dune", "Foundation", "Dune"],
