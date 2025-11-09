@@ -5,6 +5,8 @@ const addUnique = (array, element) => {
   return array;
 }
 
+const sum = (a, b) => a + b;
+
 const blueRibbonsCut = (ribbons) => ribbons.reduce(
   (prevCount, ribbon) => ribbon === 'blue' ? prevCount + 1 : prevCount,
   0
@@ -72,6 +74,11 @@ const didSangSo = (fragment) => fragment.some(
   (notes) => notes.some(
     (note) => note === 'so'
   )
+);
+
+const sumWeights = (crateWeights) => crateWeights.reduce(
+  (total, weights) => weights.reduce(sum, total),
+  0
 );
 
 const isArray = array => Array.isArray(array);
@@ -203,6 +210,12 @@ const TESTS = [
     true,
     'notes has "so"'
   ],
+  [
+    [[4, 6], [2, 3, 1], [5]],
+    sumWeights,
+    21,
+    '3 crates'
+  ]
 ]
 
 const testAll = function () {
