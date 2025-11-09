@@ -148,19 +148,19 @@ const TESTS = [
     [[22, 23], [25, 24, 22], [29]],
     areAllTempBelow32,
     true,
-    'all are below 32'
+    'temperatures are all below 32'
   ],
   [
     [[22, 23], [25, 24, 22], [29], [40, 45]],
     areAllTempBelow32,
     false,
-    'all are not below 32'
+    'temperatures are all not below 32'
   ],
   [
     [[2, 3, 2], [4], [1, 1]],
     sumOfElements,
     13,
-    '3 logs'
+    '3 runner logs'
   ],
   [
     [["blue", "yellow"], ["yellow", "green"], ["blue"]],
@@ -208,7 +208,7 @@ const TESTS = [
     [[1, 2, 1], [3], [2]],
     sumOfElements,
     9,
-    '3 usage logs'
+    '3 water usage logs'
   ]
 ];
 
