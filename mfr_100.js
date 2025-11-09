@@ -81,6 +81,11 @@ const sumWeights = (crateWeights) => crateWeights.reduce(
 
 const uniqueParcelSizes = (sizes) => sizes.reduce(addUnique, []);
 
+const countDeers = (animals) => animals.reduce(
+  (prevCount, animal) => animal === 'deer' ? prevCount + 1 : prevCount,
+  0
+)
+
 const isArray = array => Array.isArray(array);
 
 const areArraysEqual = function (array1, array2) {
@@ -221,6 +226,12 @@ const TESTS = [
     uniqueParcelSizes,
     ["small", "large", "medium"],
     '3 sizes'
+  ],
+  [
+    ["deer", "deer", "rabbit", "deer"],
+    countDeers,
+    3,
+    '3 Deers'
   ],
 ]
 
