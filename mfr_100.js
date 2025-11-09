@@ -7,24 +7,15 @@ const addUnique = (array, element) => {
 
 const sum = (a, b) => a + b;
 
+const uniqueElements =
+  elements => elements
+    .flatMap(element => element)
+    .reduce(addUnique, []);
+
 const blueRibbonsCut = ribbons => ribbons.reduce(
   (prevCount, ribbon) => ribbon === 'blue' ? prevCount + 1 : prevCount,
   0
 );
-
-const allConstellations = observations =>
-  observations.reduce((constillations, observation) =>
-    observation.reduce(addUnique, constillations),
-    []
-  );
-
-const uniqueBirds = birds => birds.reduce(addUnique, []);
-
-const studentsAttendedAtLeastOnce = records =>
-  records.reduce((resultValue, record) =>
-    record.reduce(addUnique, resultValue),
-    []
-  );
 
 const countCandies = logs =>
   logs.reduce((total, log) =>
@@ -49,20 +40,10 @@ const totalMiles = logs => logs.reduce(
   0
 );
 
-const uniqueColors = colorList => colorList.reduce(
-  (reducedColors, colors) => colors.reduce(addUnique, reducedColors),
-  []
-);
-
 const countDune = books => books.reduce(
   (prevCount, book) => book === 'Dune' ? prevCount + 1 : prevCount,
   0
 );
-
-const distinctIngredients = ingredients => ingredients
-  .reduce((reducedIngredients, currIngredients) => currIngredients
-    .reduce(addUnique, reducedIngredients), []
-  );
 
 const didSangSo = fragment => fragment.some(
   (notes) => notes.some(
@@ -75,16 +56,9 @@ const sumWeights = crateWeights => crateWeights.reduce(
   0
 );
 
-const uniqueParcelSizes = sizes => sizes.reduce(addUnique, []);
-
 const countDeers = animals => animals.reduce(
   (prevCount, animal) => animal === 'deer' ? prevCount + 1 : prevCount,
   0
-);
-
-const uniqueChapters = groupsChapters => groupsChapters.reduce(
-  (reducedChapters, chapters) => chapters.reduce(addUnique, reducedChapters),
-  []
 );
 
 const containsTurn = sequences => sequences
@@ -151,13 +125,13 @@ const TESTS = [
   [["red", "red", "green", "red"], blueRibbonsCut, 0, '0 blue ribbons are cut'],
   [
     [["Orion", "Leo"], ["Taurus"], ["Orion", "Gemini"]],
-    allConstellations,
+    uniqueElements,
     ["Orion", "Leo", "Taurus", "Gemini"],
     "3 observations of constellations"
   ],
   [
     ["sparrow", "crow", "sparrow", "eagle", "crow"],
-    uniqueBirds,
+    uniqueElements,
     ["sparrow", "crow", "eagle"],
     '2 duplicate birds'
   ],
@@ -166,7 +140,7 @@ const TESTS = [
     ["Ravi"],
     ["Asha", "Meera"]
     ],
-    studentsAttendedAtLeastOnce,
+    uniqueElements,
     ["Asha", "Ravi", "Neel", "Meera"],
     "3 periods' attendence"
   ],
@@ -202,7 +176,7 @@ const TESTS = [
   ],
   [
     [["blue", "yellow"], ["yellow", "green"], ["blue"]],
-    uniqueColors,
+    uniqueElements,
     ["blue", "yellow", "green"],
     '3 color sessions'
   ],
@@ -214,7 +188,7 @@ const TESTS = [
   ],
   [
     [["rice", "lentils"], ["rice"], ["curd", "lentils"]],
-    distinctIngredients,
+    uniqueElements,
     ["rice", "lentils", "curd"],
     '3 lists of ingredients'
   ],
@@ -232,7 +206,7 @@ const TESTS = [
   ],
   [
     ["small", "large", "medium", "small"],
-    uniqueParcelSizes,
+    uniqueElements,
     ["small", "large", "medium"],
     '3 sizes'
   ],
@@ -244,7 +218,7 @@ const TESTS = [
   ],
   [
     [[1, 2], [3], [2, 4, 1]],
-    uniqueChapters,
+    uniqueElements,
     [1, 2, 3, 4],
     "3 groups' chapters"
   ],
