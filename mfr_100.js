@@ -45,6 +45,13 @@ const concatElements =
     .flatMap(element => element)
     .reduce(sum, '');
 
+const reverse =
+  elements => elements
+    .reduce((reversedElements, element) => {
+      reversedElements.unshift(element);
+      return reversedElements;
+    }, []);
+
 const isArray = array => Array.isArray(array);
 
 const areArraysEqual = (array1, array2) => {
@@ -375,8 +382,84 @@ const TESTS = [
     ['milk', 'water', 'tea', 'sugar'],
     'Combine the ingredients from all recipe attempts'
   ],
-
-
+  [
+    ['step', 'close', 'heel', 'step', 'hop', 'close'],
+    reverse,
+    ['close','hop', 'step', 'heel', 'close', 'step'],
+    'Reverse the order of dance steps recorded by a choreographer'
+  ],
+  [
+    [[4, 3], [2], [3, 1], [5, 2]],
+    sumOfElements,
+    20,
+    'Sum all weights of parcels recorded in a courier office'
+  ],
+  [
+    [['onion', 'olives'], ['olives', 'cheese'], ['mushroom', 'onion']],
+    uniqueElements,
+    ['onion', 'olives', 'cheese', 'mushroom'],
+    'list distinct toppings chosen by pizza customers'
+  ],
+  [
+    [['red', 'orange'], ['orange', 'maroon'], ['red', 'pink']],
+    uniqueElements,
+    ['red', 'orange', 'maroon', 'pink'],
+    'all color swatches from three design sets'
+  ],
+  [
+    [['Sydney', 'Paris'], ['Sydney', 'Melbourne'], ['Japan', 'Paris']],
+    uniqueElements,
+    ['Sydney', 'Paris', 'Melbourne', 'Japan'],
+    'List unique destinations chosen in a travel club survey'
+  ],
+  [
+    [[1], [2, 1], [3]],
+    sumOfElements,
+    7,
+    'Sum all hours spent practicing an instrument'
+  ],
+  [
+    [['Aloe Vera', 'Egg Plant'], ['Aloe Vera', 'Pothos'], ['Pothos']],
+    uniqueElements,
+    ['Aloe Vera', 'Egg Plant', 'Pothos'],
+    'Find all distinct types of plants noted during fieldwork'
+  ],
+  [
+    [['Pokemon', 'Mickey Mouse'], ['Doremon', 'We Bear Bears'], ['Pokemon', 'Mickey Mouse']],
+    uniqueElements,
+    ['Pokemon', 'Mickey Mouse', 'Doremon', 'We Bear Bears'],
+    'List unique cartoon characters favored by children'
+  ],
+  [
+    [['Dark', 'White'], ['Nutty', 'Dark'], ['Nutty']],
+    uniqueElements,
+    ['Dark', 'White', 'Nutty'],
+    'Count unique flavors tasted in a chocolate workshop'
+  ],
+  [
+    [[3, 5, 2], [5, 2, 5], [1, 2, 1]],
+    sumOfElements,
+    26,
+    'Sum all minutes of meditation logged across sessions'
+  ],
+  [
+    [['hammer', 'nails'], ['saw'], ['screwdrivers', 'nails'], ['tape', 'saw']],
+    uniqueElements,
+    ['hammer', 'nails', 'saw', 'screwdrivers', 'tape'],
+    'Identify every unique tool used in a repair workshop'
+  ],
+  [
+    [['coffee', 'milk'], ['coffee', 'water'], ['coffee', 'water', 'milk', 'sugar']],
+    uniqueElements,
+    ['coffee', 'milk', 'water', 'sugar'],
+    'Gather all ingredients used in three versions of the same dish'
+  ],
+  [
+    [['Baby Shark', 'Twinkle Twinkle Little Star'], ['ABCD', 'Baby Shark'], ['Twinkle Twinkle Little Star']],
+    uniqueElements,
+    ['Baby Shark', 'Twinkle Twinkle Little Star', 'ABCD'],
+    'Create a list of distinct songs hummed by children on a bus ride'
+  ]
 ];
 
 const TESTS_HAVING_TARGET = [
@@ -513,8 +596,13 @@ const TESTS_HAVING_TARGET = [
     true,
     'Verify if all ages listed for an event are 18 or above'
   ],
-  
-
+  [
+    [["mi", "fa", "so"], ["do", "mi"], ["fa"]],
+    'fa',
+    containsAtLeastOne,
+    true,
+    'Determine whether the note “fa” appears in any music sheet'
+  ],
 ];
 
 const delimiter = () => { console.log('-'.repeat(20)) };
