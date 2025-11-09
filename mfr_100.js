@@ -91,6 +91,10 @@ const containsTurn = sequences => sequences
   .flatMap(sequence => sequence)
   .some(step => step === 'turn')
 
+const totalAmountOfWater = logs => logs
+  .flatMap(log => log)
+  .reduce(sum, 0)
+
 const isArray = array => Array.isArray(array);
 
 const areArraysEqual = (array1, array2) => {
@@ -250,6 +254,12 @@ const TESTS = [
     true,
     '2 sequences'
   ],
+  [
+    [[1, 2, 1], [3], [2]],
+    totalAmountOfWater,
+    9,
+    '3 usage logs'
+  ]
 ]
 
 const testAll = () => {
