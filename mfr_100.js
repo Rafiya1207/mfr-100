@@ -17,15 +17,14 @@ const sumOfElements =
     .flatMap(element => element)
     .reduce(sum, 0);
 
+const containsAtLeastOne = 
+  (array, target) => array
+    .flatMap(element => element)
+    .some(element => element === target);
+
 const blueRibbonsCut = ribbons => ribbons.reduce(
   (prevCount, ribbon) => ribbon === 'blue' ? prevCount + 1 : prevCount,
   0
-);
-
-const didSangDo = fragment => fragment.some(
-  (notes) => notes.some(
-    (note) => note === 'do'
-  )
 );
 
 const areAllTempBelow32 = sheets => sheets.every(
@@ -39,20 +38,10 @@ const countDune = books => books.reduce(
   0
 );
 
-const didSangSo = fragment => fragment.some(
-  (notes) => notes.some(
-    (note) => note === 'so'
-  )
-);
-
 const countDeers = animals => animals.reduce(
   (prevCount, animal) => animal === 'deer' ? prevCount + 1 : prevCount,
   0
 );
-
-const containsTurn = sequences => sequences
-  .flatMap(sequence => sequence)
-  .some(step => step === 'turn')
 
 const isArray = array => Array.isArray(array);
 
@@ -105,6 +94,17 @@ const test = (testCase) => {
   return console.log(composeMessage(array, expected, actual, description));
 }
 
+const testContainsAtLeastOnce = (testCase) => {
+  const array = testCase[0];
+  const target = testCase[1];
+  const expression = testCase[2];
+  const expected = testCase[3];
+  const description = testCase[4];
+  
+  const actual = expression(array, target);
+  return console.log(composeMessage(array, expected, actual, description));
+}
+
 const TESTS = [
   [["red", "blue", "red", "green", "red", "blue"], blueRibbonsCut, 2, '2 blue ribbons are cut'],
   [["red", "red", "green", "red"], blueRibbonsCut, 0, '0 blue ribbons are cut'],
@@ -134,12 +134,6 @@ const TESTS = [
     sumOfElements,
     15,
     '3 candy refill records'
-  ],
-  [
-    [["mi", "fa", "so"], ["do", "mi"], ["fa"]],
-    didSangDo,
-    true,
-    'notes has "do"'
   ],
   [
     [[22, 23], [25, 24, 22], [29]],
@@ -178,12 +172,6 @@ const TESTS = [
     '3 lists of ingredients'
   ],
   [
-    [["mi", "fa", "so"], ["do", "mi"], ["fa"]],
-    didSangSo,
-    true,
-    'notes has "so"'
-  ],
-  [
     [[4, 6], [2, 3, 1], [5]],
     sumOfElements,
     21,
@@ -208,21 +196,43 @@ const TESTS = [
     "3 groups' chapters"
   ],
   [
-    [["step", "tap"], ["turn", "step"]],
-    containsTurn,
-    true,
-    '2 sequences'
-  ],
-  [
     [[1, 2, 1], [3], [2]],
     sumOfElements,
     9,
     '3 usage logs'
   ]
-]
+];
+
+const TESTS_CONTAINS_ATLEAST_ONE = [
+[
+    [["mi", "fa", "so"], ["do", "mi"], ["fa"]],
+    'do',
+    containsAtLeastOne,
+    true,
+    'notes has "do"'
+  ],
+  [
+    [["mi", "fa", "so"], ["do", "mi"], ["fa"]],
+    'so',
+    containsAtLeastOne,
+    true,
+    'notes has "so"'
+  ],
+  [
+    [["step", "tap"], ["turn", "step"]],
+    'turn',
+    containsAtLeastOne,
+    true,
+    '2 sequences'
+  ],
+];
+
+const delimiter = () => { console.log('-'.repeat(20)) };
 
 const testAll = () => {
   TESTS.forEach(test);
+  delimiter();
+  TESTS_CONTAINS_ATLEAST_ONE.forEach(testContainsAtLeastOnce);
 }
 
 testAll();
